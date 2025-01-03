@@ -3,14 +3,14 @@
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 */
 
-package task
-
-import "github.com/archnum/gortoz/internal/task/base"
+package base
 
 type (
-	Config struct {
-		base.Base `ms:",squash"`
-		Config    map[string]any `ms:"config"`
+	Base struct {
+		Executor string `ms:"executor"`
+		Schedule string `ms:"schedule"`
+		Retries  uint   `ms:"retries"`
+		Disabled bool   `ms:"disabled"`
 	}
 )
 

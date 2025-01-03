@@ -26,7 +26,6 @@ type (
 func New(c container.Container) *implComponent {
 	return &implComponent{
 		Component: container.NewComponent(_name, c),
-		tasks:     make(map[string]task.Task),
 	}
 }
 
@@ -38,10 +37,12 @@ func (impl *implComponent) Build() error {
 	c := impl.C()
 	cfg := config(c)
 
-	_, err := loader.LoadTasks(cfg.Tasks, cfg.Config)
+	tasks, err := loader.LoadTasks(cfg.Tasks, cfg.Config)
 	if err != nil {
 		return err
 	}
+
+	impl.tasks = tasks
 
 	return nil
 }

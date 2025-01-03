@@ -6,20 +6,32 @@
 package loader
 
 import (
-	"github.com/archnum/sdk.base/failure"
-	"github.com/archnum/sdk.base/kv"
+	"github.com/archnum/sdk.base/config"
+	"github.com/archnum/sdk.base/mapstruct"
 
 	"github.com/archnum/gortoz/internal/task"
 )
 
-func LoadTasks(loader string, cfg map[string]any) (map[string]task.Task, error) {
-	switch loader {
-	case "file":
-		return loadFromFile(cfg)
-	default:
-		return nil,
-			failure.New("unknown task loader", kv.String("name", loader)) //////////////////////////////////////////////
+type (
+	cfgFile struct {
+		Path string `ms:"path"`
 	}
+)
+
+func loadFromFile(cfg map[string]any) (map[string]task.Task, error) {
+	file := new(cfgFile)
+
+	if err := mapstruct.Decode(file, cfg); err != nil {
+		return nil, err
+	}
+
+	var tasks map[string]*task.Config
+
+	if err := config.New().DecodeFile(&tasks, file.Path); err != nil {
+		return nil, err
+	}
+
+	return task.Build(tasks)
 }
 
 /*
