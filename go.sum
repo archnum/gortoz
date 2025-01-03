@@ -1,7 +1,7 @@
 github.com/archnum/sdk.application v0.0.0-20250102182945-610f31eca589 h1:+ZZ+cDTHzIPluwhQen9IxLggI0/FfZFAfkBJ/lPDHks=
 github.com/archnum/sdk.application v0.0.0-20250102182945-610f31eca589/go.mod h1:vk5RyDCpATjFcpznRitucobmakn93vtrQZiqXhOWvWU=
-github.com/archnum/sdk.base v0.0.0-20250102180109-823e7f579a84 h1:aprBPVn3Tq9MTBttAtoGfK6Z6oUP1vrphBZTbfkyYFY=
-github.com/archnum/sdk.base v0.0.0-20250102180109-823e7f579a84/go.mod h1:h5+FkrHpSTmuatLr4efkSIUh7hldsT+BNy7OHKo1ZNk=
+github.com/archnum/sdk.base v0.0.0-20250103224116-75940577a9f8 h1:Junpp0XnMr7D1VYh4G2UOqqSxUbmBw0SEd1dMa3dJx0=
+github.com/archnum/sdk.base v0.0.0-20250103224116-75940577a9f8/go.mod h1:h5+FkrHpSTmuatLr4efkSIUh7hldsT+BNy7OHKo1ZNk=
 github.com/archnum/sdk.http v0.0.0-20250103155013-90a298058ba2 h1:FLMPyssxaBlUnZzQ4AlzExt2zoqN/4risnISiJQStlE=
 github.com/archnum/sdk.http v0.0.0-20250103155013-90a298058ba2/go.mod h1:MzYoxSFxyyGJFka8adH7uaNpy0qM7VPASt1ZSeFtMRg=
 github.com/archnum/sdk.loggers v0.0.0-20250102182950-ccea94f13c6b h1:9jNSf1/09k5FM6BdV2/BxBA9ydpmRsRicr9FHntFAdg=

@@ -104,7 +104,7 @@ func (impl *implComponent) Start() error {
 	impl.goTracker.Go( //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		_name,
 		func(_ chan struct{}) {
-			impl.cron.Start()
+			impl.cron.Run()
 		},
 	)
 

@@ -47,7 +47,7 @@ func main() {
 
 		err = c.Run( //////////////////////////////// Liste par ordre d'exécution //////////////////////////////////////
 			"http.server",
-			// "scheduler",
+			"scheduler",
 			"waitend",
 		)
 	}
