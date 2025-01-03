@@ -9,6 +9,7 @@ require (
 	github.com/archnum/sdk.loggers v0.0.0-20250102182950-ccea94f13c6b
 	github.com/ltrochet/loggers v0.0.0-20241231182134-97fb6d303182
 	github.com/maragudk/gomponents v0.22.0
+	github.com/robfig/cron/v3 v3.0.1
 )
 
 require (

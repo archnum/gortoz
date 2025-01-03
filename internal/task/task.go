@@ -15,6 +15,7 @@ import (
 
 type (
 	Task interface {
+		Name() string
 		Attr() *base.Base
 	}
 )

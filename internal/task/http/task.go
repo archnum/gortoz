@@ -39,6 +39,10 @@ func NewTask(name string, base *base.Base, cfg map[string]any) (*implTask, error
 	return impl, nil
 }
 
+func (impl *implTask) Name() string {
+	return impl.name
+}
+
 func (impl *implTask) Attr() *base.Base {
 	return impl.Base
 }
