@@ -26,10 +26,10 @@ type (
 	implComponent struct {
 		*container.Component
 		logger    *_logger.Logger
-		parser    cron.Parser
 		cron      *cron.Cron
 		jobs      map[string]*job
 		goTracker *gotracker.GoTracker
+		parser    cron.Parser
 	}
 )
 

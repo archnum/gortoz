@@ -11,8 +11,8 @@ import (
 
 type (
 	Config struct {
-		Tasks  string         `ms:"tasks"`
 		Config map[string]any `ms:"config"`
+		Tasks  string         `ms:"tasks"`
 	}
 
 	configProvider interface {
