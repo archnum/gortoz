@@ -42,7 +42,13 @@ func newHandler(c container.Container) (*implHandler, error) {
 	return impl, nil
 }
 
-func (impl *implHandler) declareAPI() {}
+func (impl *implHandler) declareAPI() {
+	router := impl.Router()
+
+	router.Get("/", impl.dashboard)
+
+	router.Mount("/admin", impl.admin)
+}
 
 /*
 ####### END ############################################################################################################

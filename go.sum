@@ -4,11 +4,17 @@ github.com/archnum/sdk.base v0.0.0-20250102180109-823e7f579a84 h1:aprBPVn3Tq9MTB
 github.com/archnum/sdk.base v0.0.0-20250102180109-823e7f579a84/go.mod h1:h5+FkrHpSTmuatLr4efkSIUh7hldsT+BNy7OHKo1ZNk=
 github.com/archnum/sdk.http v0.0.0-20250103155013-90a298058ba2 h1:FLMPyssxaBlUnZzQ4AlzExt2zoqN/4risnISiJQStlE=
 github.com/archnum/sdk.http v0.0.0-20250103155013-90a298058ba2/go.mod h1:MzYoxSFxyyGJFka8adH7uaNpy0qM7VPASt1ZSeFtMRg=
+github.com/archnum/sdk.loggers v0.0.0-20250102182950-ccea94f13c6b h1:9jNSf1/09k5FM6BdV2/BxBA9ydpmRsRicr9FHntFAdg=
+github.com/archnum/sdk.loggers v0.0.0-20250102182950-ccea94f13c6b/go.mod h1:1a7SHlOjXQzTpi036smTVIoF5ajWAy6g0ffTpuu0/bY=
 github.com/coreos/go-systemd/v22 v22.5.0 h1:RrqgGjYQKalulkV8NGVIfkXQf6YYmOyiJKk8iXXhfZs=
 github.com/coreos/go-systemd/v22 v22.5.0/go.mod h1:Y58oyj3AT4RCenI/lSvhwexgC+NSVTIJ3seZv2GcEnc=
 github.com/go-viper/mapstructure/v2 v2.2.1 h1:ZAaOCxANMuZx5RCeg0mBdEZk7DZasvvZIxtHqx8aGss=
 github.com/go-viper/mapstructure/v2 v2.2.1/go.mod h1:oJDH3BJKyqBA2TXFhDsKDGDTlndYOZ6rGS0BRZIxGhM=
 github.com/godbus/dbus/v5 v5.0.4/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
+github.com/ltrochet/loggers v0.0.0-20241231182134-97fb6d303182 h1:rd4rVn/BexXYkFFyFYg2rrdQUArQ5v557TGj1TGWOK8=
+github.com/ltrochet/loggers v0.0.0-20241231182134-97fb6d303182/go.mod h1:fTl6Vz5zddzJB45RYyTPQcCf2mDtpT8xDNaCG2AVeUI=
+github.com/maragudk/gomponents v0.22.0 h1:0gNrSDC1nM6w0Vxj5wgGXqV8frDH9UVPE+dEyy4ApPQ=
+github.com/maragudk/gomponents v0.22.0/go.mod h1:nHkNnZL6ODgMBeJhrZjkMHVvNdoYsfmpKB2/hjdQ0Hg=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=

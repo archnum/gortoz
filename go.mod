@@ -6,6 +6,9 @@ require (
 	github.com/archnum/sdk.application v0.0.0-20250102182945-610f31eca589
 	github.com/archnum/sdk.base v0.0.0-20250102180109-823e7f579a84
 	github.com/archnum/sdk.http v0.0.0-20250103155013-90a298058ba2
+	github.com/archnum/sdk.loggers v0.0.0-20250102182950-ccea94f13c6b
+	github.com/ltrochet/loggers v0.0.0-20241231182134-97fb6d303182
+	github.com/maragudk/gomponents v0.22.0
 )
 
 require (
