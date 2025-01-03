@@ -1,0 +1,38 @@
+####### gortoz (c) 2025 Archivage Numérique ######################################################## MIT License #######
+####### https://taskfile.dev
+
+version: '3'
+
+vars:
+    APPNAME: gortoz
+    VERSION: 0.1.0
+    BUILTAT:
+        sh: date +%s
+    LDFLAGS: -s -w -X 'main._version={{.VERSION}}' -X 'main._builtAt={{.BUILTAT}}'
+
+tasks:
+    upgrade:
+        cmds:
+            - go get -u ./...
+            - go mod tidy
+    lint:
+        cmds:
+            - golangci-lint run
+    test:
+        cmds:
+            - go test -cover ./...
+    build:
+        cmds:
+            - go build -ldflags "{{.LDFLAGS}}" -o $GOPATH/bin/{{.APPNAME}} ./main/main.go
+    default:
+        cmds:
+            - task: lint
+            - task: test
+            - task: build
+    commit:
+        cmds:
+            - git add .
+            - git commit -m "En cours de développement"
+            - git push
+
+####### END ############################################################################################################
