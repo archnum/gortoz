@@ -21,7 +21,7 @@ type (
 )
 
 func (job *job) Run() {
-	if job.task.Attr().Disabled { // TODO: atomic
+	if job.task.Attr().Disabled {
 		return
 	}
 

@@ -1,9 +1,9 @@
 github.com/archnum/sdk.application v0.0.0-20250103225614-fb4d1b5d2244 h1:muAgqbYNw3o4WD7nzDx3TnDtAC7wkZs5ND+BecOHubs=
 github.com/archnum/sdk.application v0.0.0-20250103225614-fb4d1b5d2244/go.mod h1:ZaYNl6eh6/kO2kgy7hLeML9HohHSJVAlXLtwmqegY1o=
-github.com/archnum/sdk.base v0.0.0-20250103224116-75940577a9f8 h1:Junpp0XnMr7D1VYh4G2UOqqSxUbmBw0SEd1dMa3dJx0=
-github.com/archnum/sdk.base v0.0.0-20250103224116-75940577a9f8/go.mod h1:h5+FkrHpSTmuatLr4efkSIUh7hldsT+BNy7OHKo1ZNk=
-github.com/archnum/sdk.http v0.0.0-20250103225616-f2b48d9fc2c1 h1:DaMbOQQC9a0M3Ul1YBpuktn7cE2bfDFbf9KNn/s/30Q=
-github.com/archnum/sdk.http v0.0.0-20250103225616-f2b48d9fc2c1/go.mod h1:E6lboAWwQJxOg+1TqGxiQKPfAu2RoBPX0kw5Jm23WPo=
+github.com/archnum/sdk.base v0.0.0-20250104131552-c800301e8b7b h1:GgLU5tq/3NCTv/KiAkdGWRnUrnncMl+2q1c9EOowCbs=
+github.com/archnum/sdk.base v0.0.0-20250104131552-c800301e8b7b/go.mod h1:h5+FkrHpSTmuatLr4efkSIUh7hldsT+BNy7OHKo1ZNk=
+github.com/archnum/sdk.http v0.0.0-20250104131555-570f181defca h1:Fa2HWuAIH57dDSaX3TB+Xbqr8qJLs/UDKondqs3O64g=
+github.com/archnum/sdk.http v0.0.0-20250104131555-570f181defca/go.mod h1:8jYBScP8RkvtHkfmueLl707rKw8mturEeAk7V8iLd8k=
 github.com/archnum/sdk.loggers v0.0.0-20250103225618-622badc66529 h1:cwgbk/4zdBxdxyDwJd4Q9Kv3H5pYM4go76wkep353qc=
 github.com/archnum/sdk.loggers v0.0.0-20250103225618-622badc66529/go.mod h1:0/6PYnZ6ueNMIK2dwVbU9+2/x8nPBeCEihjbYHjTLk4=
 github.com/coreos/go-systemd/v22 v22.5.0 h1:RrqgGjYQKalulkV8NGVIfkXQf6YYmOyiJKk8iXXhfZs=

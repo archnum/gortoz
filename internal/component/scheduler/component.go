@@ -7,6 +7,7 @@ package scheduler
 
 import (
 	"context"
+	"time"
 
 	"github.com/archnum/sdk.application/component/logger"
 	"github.com/archnum/sdk.application/container"
@@ -21,7 +22,8 @@ import (
 )
 
 const (
-	_name = "scheduler"
+	_name               = "scheduler"
+	_reloadingFrequency = time.Duration(5 * time.Minute)
 )
 
 type (
@@ -55,9 +57,9 @@ func (impl *implComponent) Build() error {
 		return err
 	}
 
-	impl.logger = logger.Value(c).New(id, "_name")
+	impl.logger = logger.Value(c).New(id, _name)
 
-	logger := newCronLogger(logger.Value(c).New(id, "_name"))
+	logger := newCronLogger(impl.logger)
 	parser := cron.NewParser(
 		cron.Second | cron.Minute | cron.Hour | cron.Dom | cron.Month | cron.Dow | cron.Descriptor,
 	)
@@ -75,7 +77,7 @@ func (impl *implComponent) Build() error {
 
 	impl.cron = cron
 
-	tasks, err := loader.LoadTasks(cfg.Tasks, cfg.Config)
+	tasks, err := loader.LoadTasks(cfg.Loader, cfg.Config)
 	if err != nil {
 		return err
 	}
@@ -105,9 +107,17 @@ func (impl *implComponent) Start() error {
 
 	impl.goTracker.Go( //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		_name,
-		func(_ context.Context) error {
-			impl.cron.Run()
-			return nil
+		func(ctx context.Context) error {
+			impl.cron.Start()
+
+			for {
+				select {
+				case <-ctx.Done():
+					return nil
+				case <-time.After(_reloadingFrequency):
+					impl.reload()
+				}
+			}
 		},
 	)
 
@@ -115,9 +125,8 @@ func (impl *implComponent) Start() error {
 }
 
 func (impl *implComponent) Stop() error {
-	<-impl.cron.Stop().Done()
-
 	impl.goTracker.Stop()
+	<-impl.cron.Stop().Done()
 	impl.goTracker.Wait()
 
 	return nil

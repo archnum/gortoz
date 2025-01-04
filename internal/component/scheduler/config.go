@@ -12,7 +12,7 @@ import (
 type (
 	Config struct {
 		Config map[string]any `ms:"config"`
-		Tasks  string         `ms:"tasks"`
+		Loader string         `ms:"loader"`
 	}
 
 	configProvider interface {
