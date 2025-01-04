@@ -1,11 +1,11 @@
-github.com/archnum/sdk.application v0.0.0-20250103225614-fb4d1b5d2244 h1:muAgqbYNw3o4WD7nzDx3TnDtAC7wkZs5ND+BecOHubs=
-github.com/archnum/sdk.application v0.0.0-20250103225614-fb4d1b5d2244/go.mod h1:ZaYNl6eh6/kO2kgy7hLeML9HohHSJVAlXLtwmqegY1o=
+github.com/archnum/sdk.application v0.0.0-20250104145412-79384ef19b83 h1:fLFzNGn10+7YeR7wUXxq/E0juuXZyO42hZbdCQACS0Q=
+github.com/archnum/sdk.application v0.0.0-20250104145412-79384ef19b83/go.mod h1:1xhSRN9LlwjKaI0ktfd+iAVTPg3C03r2g9YNvo308S8=
 github.com/archnum/sdk.base v0.0.0-20250104131552-c800301e8b7b h1:GgLU5tq/3NCTv/KiAkdGWRnUrnncMl+2q1c9EOowCbs=
 github.com/archnum/sdk.base v0.0.0-20250104131552-c800301e8b7b/go.mod h1:h5+FkrHpSTmuatLr4efkSIUh7hldsT+BNy7OHKo1ZNk=
-github.com/archnum/sdk.http v0.0.0-20250104131555-570f181defca h1:Fa2HWuAIH57dDSaX3TB+Xbqr8qJLs/UDKondqs3O64g=
-github.com/archnum/sdk.http v0.0.0-20250104131555-570f181defca/go.mod h1:8jYBScP8RkvtHkfmueLl707rKw8mturEeAk7V8iLd8k=
-github.com/archnum/sdk.loggers v0.0.0-20250103225618-622badc66529 h1:cwgbk/4zdBxdxyDwJd4Q9Kv3H5pYM4go76wkep353qc=
-github.com/archnum/sdk.loggers v0.0.0-20250103225618-622badc66529/go.mod h1:0/6PYnZ6ueNMIK2dwVbU9+2/x8nPBeCEihjbYHjTLk4=
+github.com/archnum/sdk.http v0.0.0-20250104145418-512daea9d4d5 h1:vhFAQUvi3DurLUsSdXLT5Q3xK2iS/v2WgPzqQ2pM2Ys=
+github.com/archnum/sdk.http v0.0.0-20250104145418-512daea9d4d5/go.mod h1:L2ND8W0+ytdOrQcUPExAjqwcegG39DC2wrCn8A6y/ag=
+github.com/archnum/sdk.loggers v0.0.0-20250104145420-539e3fc1f1ec h1:kYEEfG9oYJmrYX+maxmux+J7IOMv9IbCiuuKDeW/ryY=
+github.com/archnum/sdk.loggers v0.0.0-20250104145420-539e3fc1f1ec/go.mod h1:jdN+/3cEoVzqh+KWvPEQ1/p618sjTGa7gB6/9uliqv0=
 github.com/coreos/go-systemd/v22 v22.5.0 h1:RrqgGjYQKalulkV8NGVIfkXQf6YYmOyiJKk8iXXhfZs=
 github.com/coreos/go-systemd/v22 v22.5.0/go.mod h1:Y58oyj3AT4RCenI/lSvhwexgC+NSVTIJ3seZv2GcEnc=
 github.com/go-viper/mapstructure/v2 v2.2.1 h1:ZAaOCxANMuZx5RCeg0mBdEZk7DZasvvZIxtHqx8aGss=
@@ -15,8 +15,6 @@ github.com/ltrochet/loggers v0.0.0-20241231182134-97fb6d303182 h1:rd4rVn/BexXYkF
 github.com/ltrochet/loggers v0.0.0-20241231182134-97fb6d303182/go.mod h1:fTl6Vz5zddzJB45RYyTPQcCf2mDtpT8xDNaCG2AVeUI=
 github.com/maragudk/gomponents v0.22.0 h1:0gNrSDC1nM6w0Vxj5wgGXqV8frDH9UVPE+dEyy4ApPQ=
 github.com/maragudk/gomponents v0.22.0/go.mod h1:nHkNnZL6ODgMBeJhrZjkMHVvNdoYsfmpKB2/hjdQ0Hg=
-github.com/robfig/cron/v3 v3.0.1 h1:WdRxkvbJztn8LMz/QEvLN5sBU+xKpSqwwUO1Pjr4qDs=
-github.com/robfig/cron/v3 v3.0.1/go.mod h1:eQICP3HwyT7UooqI/z+Ov+PtYAWygg1TEWWzGIFLtro=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=

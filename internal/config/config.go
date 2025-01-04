@@ -6,7 +6,6 @@
 package config
 
 import (
-	"github.com/archnum/gortoz/internal/component/scheduler"
 	"github.com/archnum/sdk.application/component/logger"
 	"github.com/archnum/sdk.application/container"
 	"github.com/archnum/sdk.base/config"
@@ -18,18 +17,13 @@ import (
 
 type (
 	Config struct {
-		Logger    logger.Config    `ms:"logger"`
-		Scheduler scheduler.Config `ms:"scheduler"`
-		Server    server.Config    `ms:"server"`
+		Logger logger.Config `ms:"logger"`
+		Server server.Config `ms:"server"`
 	}
 )
 
 func (cfg *Config) ConfigLogger() *logger.Config {
 	return &cfg.Logger
-}
-
-func (cfg *Config) ConfigScheduler() *scheduler.Config {
-	return &cfg.Scheduler
 }
 
 func (cfg *Config) ConfigServer() *server.Config {
