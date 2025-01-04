@@ -6,6 +6,8 @@
 package scheduler
 
 import (
+	"context"
+
 	"github.com/archnum/sdk.application/component/logger"
 	"github.com/archnum/sdk.application/container"
 	"github.com/archnum/sdk.base/failure"
@@ -103,8 +105,9 @@ func (impl *implComponent) Start() error {
 
 	impl.goTracker.Go( //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		_name,
-		func(_ chan struct{}) {
+		func(_ context.Context) error {
 			impl.cron.Run()
+			return nil
 		},
 	)
 
