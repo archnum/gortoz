@@ -3,18 +3,23 @@
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 */
 
-package webui
+package api
 
 import (
 	"github.com/archnum/sdk.application/component/logger"
 	"github.com/archnum/sdk.application/container"
 	"github.com/archnum/sdk.base/uuid"
 	"github.com/archnum/sdk.http/api"
+
+	"github.com/archnum/gortoz/internal/component/api/admin"
+	"github.com/archnum/gortoz/internal/component/api/ui"
 )
 
 type (
 	implHandler struct {
 		api.Manager
+		admin *admin.API
+		ui    *ui.API
 	}
 )
 
@@ -33,21 +38,25 @@ func newHandler(c container.Container) (*implHandler, error) {
 		Logger: logger,
 	}
 
-	impl := &implHandler{
-		Manager: api.New(p),
+	manager := api.New(p)
+
+	admin, err := admin.New(c, manager)
+	if err != nil {
+		return nil, err
 	}
 
-	impl.declareAPI()
+	ui, err := ui.New(c, manager)
+	if err != nil {
+		return nil, err
+	}
+
+	impl := &implHandler{
+		Manager: manager,
+		admin:   admin,
+		ui:      ui,
+	}
 
 	return impl, nil
-}
-
-func (impl *implHandler) declareAPI() {
-	router := impl.Router()
-
-	router.Get("/", impl.dashboard)
-
-	router.Mount("/admin", impl.admin)
 }
 
 /*

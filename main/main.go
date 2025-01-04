@@ -14,10 +14,10 @@ import (
 	"github.com/archnum/sdk.base/application"
 	"github.com/archnum/sdk.http/component/server"
 
+	"github.com/archnum/gortoz/internal/component/api"
 	"github.com/archnum/gortoz/internal/component/backend"
 	"github.com/archnum/gortoz/internal/component/cmdline"
 	"github.com/archnum/gortoz/internal/component/scheduler"
-	"github.com/archnum/gortoz/internal/component/webui"
 	_cfg "github.com/archnum/gortoz/internal/config"
 )
 
@@ -42,7 +42,7 @@ func main() {
 			logger.New(c),
 			backend.New(c),
 			scheduler.New(c),
-			webui.New(c),
+			api.New(c),
 			server.New(c),
 			waitend.New(c),
 		)

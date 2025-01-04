@@ -3,9 +3,10 @@
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 */
 
-package webui
+package admin
 
 import (
+	"github.com/archnum/sdk.application/container"
 	"github.com/archnum/sdk.http/api"
 	"github.com/archnum/sdk.http/api/middleware"
 	"github.com/archnum/sdk.http/api/render"
@@ -13,10 +14,26 @@ import (
 	_external "github.com/ltrochet/loggers"
 )
 
-func (impl *implHandler) admin(router api.Router) {
+type (
+	API struct {
+		api.Manager
+	}
+)
+
+func New(_ container.Container, manager api.Manager) (*API, error) {
+	api := &API{
+		Manager: manager,
+	}
+
+	manager.Router().Mount("/admin", api.v0)
+
+	return api, nil
+}
+
+func (api *API) v0(router api.Router) {
 	router.Use(
-		middleware.Logger(impl.Logger()),
-		middleware.Recover(impl.Logger()),
+		middleware.Logger(api.Logger()),
+		middleware.Recover(api.Logger()),
 	)
 
 	router.Get(
