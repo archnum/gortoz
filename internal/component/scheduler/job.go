@@ -3,16 +3,30 @@
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 */
 
-package task
+package scheduler
 
-import "github.com/archnum/gortoz/internal/task/base"
+import (
+	"github.com/archnum/sdk.base/tracer"
+	"github.com/robfig/cron/v3"
+
+	"github.com/archnum/gortoz/internal/task"
+)
 
 type (
-	Config struct {
-		base.Base `yaml:",inline"`
-		Config    map[string]any `yaml:"config"`
+	job struct {
+		task     task.Task
+		schedule cron.Schedule
+		entryID  cron.EntryID
 	}
 )
+
+func (job *job) Run() {
+	if job.task.Attr().Disabled {
+		return
+	}
+
+	tracer.Log(job.task.Name()) // AFAC
+}
 
 /*
 ####### END ############################################################################################################

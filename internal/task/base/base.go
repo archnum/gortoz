@@ -7,10 +7,10 @@ package base
 
 type (
 	Base struct {
-		Executor string `ms:"executor"`
-		Schedule string `ms:"schedule"`
-		Retries  uint   `ms:"retries"`
-		Disabled bool   `ms:"disabled"`
+		Executor string `yaml:"executor"`
+		Schedule string `yaml:"schedule"`
+		Retries  uint   `yaml:"retries"`
+		Disabled bool   `yaml:"disabled"`
 	}
 )
 

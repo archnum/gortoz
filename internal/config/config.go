@@ -13,14 +13,21 @@ import (
 	"github.com/archnum/sdk.base/kv"
 	"github.com/archnum/sdk.base/mapstruct"
 	"github.com/archnum/sdk.http/server"
+
+	"github.com/archnum/gortoz/internal/component/backend"
 )
 
 type (
 	Config struct {
-		Logger logger.Config `ms:"logger"`
-		Server server.Config `ms:"server"`
+		Backend backend.Config `ms:"backend"`
+		Logger  logger.Config  `ms:"logger"`
+		Server  server.Config  `ms:"server"`
 	}
 )
+
+func (cfg *Config) ConfigBackend() *backend.Config {
+	return &cfg.Backend
+}
 
 func (cfg *Config) ConfigLogger() *logger.Config {
 	return &cfg.Logger

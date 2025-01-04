@@ -14,7 +14,9 @@ import (
 	"github.com/archnum/sdk.base/application"
 	"github.com/archnum/sdk.http/component/server"
 
+	"github.com/archnum/gortoz/internal/component/backend"
 	"github.com/archnum/gortoz/internal/component/cmdline"
+	"github.com/archnum/gortoz/internal/component/scheduler"
 	"github.com/archnum/gortoz/internal/component/webui"
 	_cfg "github.com/archnum/gortoz/internal/config"
 )
@@ -38,14 +40,17 @@ func main() {
 			config.New(c, new(_cfg.Config)),
 			cmdline.New(c),
 			logger.New(c),
+			backend.New(c),
+			scheduler.New(c),
 			webui.New(c),
 			server.New(c),
 			waitend.New(c),
 		)
 
 		err = c.Run( //////////////////////////////// Liste par ordre d'exécution //////////////////////////////////////
-			"http.server",
-			"waitend",
+			server.Name,
+			scheduler.Name,
+			waitend.Name,
 		)
 	}
 
