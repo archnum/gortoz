@@ -31,13 +31,13 @@ type (
 	Scheduler interface{}
 
 	implComponent struct {
+		backend backend.Backend
 		*container.Component
 		logger    *_logger.Logger
 		cron      *cron.Cron
 		jobs      map[string]*job
 		goTracker *gotracker.GoTracker
 		parser    cron.Parser
-		backend   backend.Backend
 	}
 )
 
@@ -56,6 +56,7 @@ func (impl *implComponent) addJob(task task.Task, schedule cron.Schedule) {
 	job := &job{
 		task:     task,
 		schedule: schedule,
+		manager:  impl.backend,
 	}
 
 	job.entryID = impl.cron.Schedule(schedule, job)

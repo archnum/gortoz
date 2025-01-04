@@ -9,8 +9,8 @@ import "github.com/archnum/gortoz/internal/task/base"
 
 type (
 	Config struct {
-		base.Base `yaml:",inline"`
 		Config    map[string]any `yaml:"config"`
+		base.Base `yaml:",inline"`
 	}
 )
 

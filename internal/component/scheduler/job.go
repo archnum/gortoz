@@ -13,15 +13,20 @@ import (
 )
 
 type (
+	manager interface {
+		AmITheLeader() bool
+	}
+
 	job struct {
 		task     task.Task
 		schedule cron.Schedule
+		manager  manager
 		entryID  cron.EntryID
 	}
 )
 
 func (job *job) Run() {
-	if job.task.Attr().Disabled {
+	if !job.manager.AmITheLeader() || job.task.Attr().Disabled {
 		return
 	}
 

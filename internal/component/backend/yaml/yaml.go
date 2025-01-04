@@ -20,8 +20,8 @@ type (
 	}
 
 	implBackend struct {
-		file  string
 		tasks map[string]*task.Config
+		file  string
 	}
 )
 
@@ -36,6 +36,10 @@ func New(data map[string]any) (*implBackend, error) {
 	}
 
 	return impl, nil
+}
+
+func (impl *implBackend) AmITheLeader() bool {
+	return true
 }
 
 func (impl *implBackend) LoadTasks() (map[string]*task.Config, error) {

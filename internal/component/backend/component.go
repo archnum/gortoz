@@ -20,6 +20,7 @@ const (
 
 type (
 	Backend interface {
+		AmITheLeader() bool
 		LoadTasks() (map[string]*task.Config, error)
 		Close() error
 	}
