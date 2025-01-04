@@ -89,6 +89,7 @@ func (impl *implComponent) Build() error {
 	}
 
 	impl.logger = logger.Value(c).New(id, Name)
+	impl.logger.Register()
 
 	logger := newCronLogger(impl.logger)
 	parser := cron.NewParser(
