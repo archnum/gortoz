@@ -18,6 +18,7 @@ type (
 		Name() string
 		Attr() *base.Base
 		Enabled() bool
+		Run() error
 	}
 )
 

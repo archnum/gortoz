@@ -6,7 +6,6 @@
 package scheduler
 
 import (
-	"github.com/archnum/sdk.base/tracer"
 	"github.com/robfig/cron/v3"
 
 	"github.com/archnum/gortoz/internal/task"
@@ -26,7 +25,7 @@ type (
 )
 
 func (job *job) run() {
-	tracer.Log(job.task.Name()) // AFAC
+	_ = job.task.Run()
 }
 
 func (job *job) Run() {

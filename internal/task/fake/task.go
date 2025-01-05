@@ -6,35 +6,21 @@
 package http
 
 import (
-	"github.com/archnum/sdk.base/mapstruct"
-	"github.com/archnum/sdk.base/tracer"
-
 	"github.com/archnum/gortoz/internal/task/base"
+	"github.com/archnum/sdk.base/tracer"
 )
 
 type (
 	implTask struct {
 		*base.Base
-		*config
 		name string
 	}
 )
 
-func NewTask(name string, base *base.Base, cfg map[string]any) (*implTask, error) {
-	config := new(config)
-
-	if err := mapstruct.Decode(&config, cfg); err != nil {
-		return nil, err
-	}
-
-	if err := config.validate(); err != nil {
-		return nil, err
-	}
-
+func NewTask(name string, base *base.Base, _ map[string]any) (*implTask, error) {
 	impl := &implTask{
-		Base:   base,
-		config: config,
-		name:   name,
+		Base: base,
+		name: name,
 	}
 
 	return impl, nil
