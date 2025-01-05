@@ -7,17 +7,26 @@ package v1
 
 import (
 	"github.com/archnum/sdk.http/api"
+	"github.com/archnum/sdk.http/api/bind"
 	"github.com/archnum/sdk.http/api/render"
 )
 
 func (api *API) disableTask(rr render.Renderer) error {
-	rr.NoContent()
-	return nil
+	name, err := bind.PathString(rr, "name")
+	if err != nil {
+		return err
+	}
+
+	return api.scheduler.DisableTask(name)
 }
 
 func (api *API) enableTask(rr render.Renderer) error {
-	rr.NoContent()
-	return nil
+	name, err := bind.PathString(rr, "name")
+	if err != nil {
+		return err
+	}
+
+	return api.scheduler.EnableTask(name)
 }
 
 func (api *API) tasks(router api.Router) {

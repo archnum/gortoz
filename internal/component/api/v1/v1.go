@@ -9,17 +9,21 @@ import (
 	"github.com/archnum/sdk.application/container"
 	"github.com/archnum/sdk.http/api"
 	"github.com/archnum/sdk.http/api/middleware"
+
+	"github.com/archnum/gortoz/internal/component/scheduler"
 )
 
 type (
 	API struct {
 		api.Manager
+		scheduler scheduler.Scheduler
 	}
 )
 
 func New(c container.Container, manager api.Manager) (*API, error) {
 	api := &API{
-		Manager: manager,
+		Manager:   manager,
+		scheduler: scheduler.Value(c),
 	}
 
 	manager.Router().Mount("/api/v1", api.v1)

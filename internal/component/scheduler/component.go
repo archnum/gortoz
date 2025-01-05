@@ -28,7 +28,10 @@ const (
 )
 
 type (
-	Scheduler interface{}
+	Scheduler interface {
+		DisableTask(name string) error
+		EnableTask(name string) error
+	}
 
 	implComponent struct {
 		backend backend.Backend
