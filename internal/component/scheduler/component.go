@@ -32,6 +32,7 @@ type (
 	Scheduler interface {
 		DisableTask(name string) error
 		EnableTask(name string) error
+		FireTask(name string) error
 	}
 
 	implComponent struct {
@@ -55,6 +56,18 @@ func New(c container.Container) *implComponent {
 
 func Value(c container.Container) Scheduler {
 	return container.Value[Scheduler](c, Name)
+}
+
+func (impl *implComponent) getJob(name string) *job {
+	impl.mutex.Lock()
+	defer impl.mutex.Unlock()
+
+	job, ok := impl.jobs[name]
+	if !ok {
+		return nil
+	}
+
+	return job
 }
 
 func (impl *implComponent) addJob(task task.Task, schedule cron.Schedule) {

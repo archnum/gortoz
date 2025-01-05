@@ -25,9 +25,13 @@ type (
 	}
 )
 
+func (job *job) run() {
+	tracer.Log(job.task.Name()) // AFAC
+}
+
 func (job *job) Run() {
 	if job.manager.AmITheLeader() && job.task.Enabled() {
-		tracer.Log(job.task.Name()) // AFAC
+		job.run()
 	}
 }
 

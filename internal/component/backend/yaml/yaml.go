@@ -14,6 +14,7 @@ import (
 	"github.com/archnum/sdk.base/kv"
 	"github.com/archnum/sdk.base/mapstruct"
 	"github.com/archnum/sdk.base/uuid"
+	"github.com/archnum/sdk.http/api/apierr"
 	"gopkg.in/yaml.v3"
 
 	"github.com/archnum/gortoz/internal/task"
@@ -100,7 +101,9 @@ func (impl *implBackend) disableEnable(name string, disabled bool) error {
 
 	task, ok := impl.tasks[name]
 	if !ok {
-		return failure.New("this task doesn't exist", kv.String("name", name)) /////////////////////////////////////////
+		return apierr.NotFound(
+			failure.New("this task doesn't exist", kv.String("name", name)), ///////////////////////////////////////////
+		)
 	}
 
 	if task.Enabled() != disabled {
