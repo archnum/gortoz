@@ -10,6 +10,7 @@ import (
 	"github.com/archnum/sdk.base/kv"
 
 	"github.com/archnum/gortoz/internal/task/base"
+	"github.com/archnum/gortoz/internal/task/fake"
 	"github.com/archnum/gortoz/internal/task/http"
 )
 
@@ -32,6 +33,8 @@ func Build(cfg map[string]*Config) (map[string]Task, error) {
 
 	for name, tCfg := range cfg {
 		switch tCfg.Executor {
+		case "fake":
+			task, err = fake.NewTask(name, tCfg.Base, tCfg.Config)
 		case "http":
 			task, err = http.NewTask(name, tCfg.Base, tCfg.Config)
 		default:
