@@ -43,7 +43,7 @@ func (impl *implComponent) reload() {
 		if ok {
 			pAttr := pJob.task.Attr()
 
-			if attr.Schedule == pAttr.Schedule {
+			if attr.Schedule == pAttr.Schedule && attr.Enabled() == pAttr.Enabled() {
 				continue
 			}
 
@@ -66,8 +66,9 @@ func (impl *implComponent) reload() {
 		impl.logger.Notice( //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 			util.If(ok, "Modified task", "Added task"),
 			kv.String("name", name),
-			kv.String("executor", attr.Executor),
+			kv.Bool("disabled", !attr.Enabled()),
 			kv.String("schedule", attr.Schedule),
+			kv.String("executor", attr.Executor),
 		)
 	}
 

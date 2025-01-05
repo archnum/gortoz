@@ -43,9 +43,9 @@ func Value(c container.Container) Backend {
 	return container.Value[Backend](c, _name)
 }
 
-//////////////////////
-/// Implementation ///
-//////////////////////
+/////////////////
+/// Component ///
+/////////////////
 
 func (impl *implComponent) Build() error {
 	c := impl.C()
