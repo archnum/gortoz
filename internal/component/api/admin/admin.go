@@ -25,12 +25,12 @@ func New(_ container.Container, manager api.Manager) (*API, error) {
 		Manager: manager,
 	}
 
-	manager.Router().Mount("/admin", api.v0)
+	manager.Router().Mount("/admin", api.admin)
 
 	return api, nil
 }
 
-func (api *API) v0(router api.Router) {
+func (api *API) admin(router api.Router) {
 	router.Use(
 		middleware.Logger(api.Logger()),
 		middleware.Recover(api.Logger()),

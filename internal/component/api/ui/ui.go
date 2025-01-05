@@ -6,11 +6,8 @@
 package ui
 
 import (
-	"net/http"
-
 	"github.com/archnum/sdk.application/container"
 	"github.com/archnum/sdk.http/api"
-	"github.com/archnum/sdk.http/api/render"
 )
 
 type (
@@ -31,14 +28,7 @@ func New(_ container.Container, manager api.Manager) (*API, error) {
 
 	router := manager.Router()
 
-	router.Get(
-		"/static/...",
-		func(rr render.Renderer) error {
-			http.StripPrefix("/static", http.FileServer(fs)).ServeHTTP(rr.ResponseWriter(), rr.Request())
-			return nil
-		},
-	)
-
+	router.Static(fs)
 	router.Get("/", api.dashboard)
 
 	return api, nil

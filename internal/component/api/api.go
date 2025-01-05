@@ -13,6 +13,7 @@ import (
 
 	"github.com/archnum/gortoz/internal/component/api/admin"
 	"github.com/archnum/gortoz/internal/component/api/ui"
+	v1 "github.com/archnum/gortoz/internal/component/api/v1"
 )
 
 type (
@@ -20,6 +21,7 @@ type (
 		api.Manager
 		admin *admin.API
 		ui    *ui.API
+		v1    *v1.API
 	}
 )
 
@@ -50,10 +52,16 @@ func newHandler(c container.Container) (*implHandler, error) {
 		return nil, err
 	}
 
+	v1, err := v1.New(c, manager)
+	if err != nil {
+		return nil, err
+	}
+
 	impl := &implHandler{
 		Manager: manager,
 		admin:   admin,
 		ui:      ui,
+		v1:      v1,
 	}
 
 	return impl, nil
