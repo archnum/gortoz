@@ -135,6 +135,8 @@ func (impl *implBackend) EnableTask(name string) error {
 	return impl.disableEnable(name, false)
 }
 
+func (impl *implBackend) CollectResult(result *task.Result) {}
+
 func (impl *implBackend) Close() error {
 	return nil
 }

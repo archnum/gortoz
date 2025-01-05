@@ -24,6 +24,7 @@ type (
 		LoadTasks() (map[string]*task.Config, error)
 		DisableTask(name string) error
 		EnableTask(name string) error
+		CollectResult(result *task.Result)
 		Close() error
 	}
 
