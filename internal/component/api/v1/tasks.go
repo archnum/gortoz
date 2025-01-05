@@ -53,7 +53,7 @@ func (api *API) fireTask(rr render.Renderer) error {
 func (api *API) tasks(router api.Router) {
 	router.Patch("/:name/disable", api.disableTask)
 	router.Patch("/:name/enable", api.enableTask)
-	router.Patch("/:name/fire", api.fireTask)
+	router.Put("/:name/fire", api.fireTask)
 }
 
 /*
