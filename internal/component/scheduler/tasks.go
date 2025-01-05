@@ -5,16 +5,14 @@
 
 package scheduler
 
-import (
-	"github.com/archnum/sdk.base/failure"
-)
-
-func (impl *implComponent) DisableTask(_ string) error {
-	return failure.NotImplemented
+func (impl *implComponent) DisableTask(name string) error {
+	_, _ = impl.backend.DisableTask(name)
+	return nil
 }
 
-func (impl *implComponent) EnableTask(_ string) error {
-	return failure.NotImplemented
+func (impl *implComponent) EnableTask(name string) error {
+	_, _ = impl.backend.EnableTask(name)
+	return nil
 }
 
 /*

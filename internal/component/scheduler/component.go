@@ -7,6 +7,7 @@ package scheduler
 
 import (
 	"context"
+	"sync"
 	"time"
 
 	"github.com/archnum/sdk.application/component/logger"
@@ -41,6 +42,7 @@ type (
 		jobs      map[string]*job
 		goTracker *gotracker.GoTracker
 		parser    cron.Parser
+		mutex     sync.Mutex
 	}
 )
 
@@ -64,12 +66,24 @@ func (impl *implComponent) addJob(task task.Task, schedule cron.Schedule) {
 
 	job.entryID = impl.cron.Schedule(schedule, job)
 
+	impl.mutex.Lock()
+	defer impl.mutex.Unlock()
+
 	impl.jobs[task.Name()] = job
 }
 
-//////////////////////
-/// Implementation ///
-//////////////////////
+func (impl *implComponent) deleteJob(job *job) {
+	impl.cron.Remove(job.entryID)
+
+	impl.mutex.Lock()
+	defer impl.mutex.Unlock()
+
+	delete(impl.jobs, job.task.Name())
+}
+
+/////////////////
+/// Component ///
+/////////////////
 
 func (impl *implComponent) Build() error {
 	c := impl.C()

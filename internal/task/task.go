@@ -17,6 +17,7 @@ type (
 	Task interface {
 		Name() string
 		Attr() *base.Base
+		Enabled() bool
 	}
 )
 

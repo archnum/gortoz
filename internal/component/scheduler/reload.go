@@ -47,8 +47,7 @@ func (impl *implComponent) reload() {
 				continue
 			}
 
-			impl.cron.Remove(pJob.entryID)
-			delete(impl.jobs, name)
+			impl.deleteJob(pJob)
 		}
 
 		schedule, err := impl.parser.Parse(attr.Schedule)

@@ -26,11 +26,9 @@ type (
 )
 
 func (job *job) Run() {
-	if !job.manager.AmITheLeader() || job.task.Attr().Disabled {
-		return
+	if job.manager.AmITheLeader() && job.task.Enabled() {
+		tracer.Log(job.task.Name()) // AFAC
 	}
-
-	tracer.Log(job.task.Name()) // AFAC
 }
 
 /*

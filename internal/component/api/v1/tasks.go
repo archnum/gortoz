@@ -30,8 +30,8 @@ func (api *API) enableTask(rr render.Renderer) error {
 }
 
 func (api *API) tasks(router api.Router) {
-	router.Put("/:name/disable", api.disableTask)
-	router.Put("/:name/enable", api.enableTask)
+	router.Patch("/:name/disable", api.disableTask)
+	router.Patch("/:name/enable", api.enableTask)
 }
 
 /*
