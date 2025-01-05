@@ -32,7 +32,7 @@ func Build(cfg map[string]*Config) (map[string]Task, error) {
 	for name, tCfg := range cfg {
 		switch tCfg.Executor {
 		case "http":
-			task, err = http.NewTask(name, &tCfg.Base, tCfg.Config)
+			task, err = http.NewTask(name, tCfg.Base, tCfg.Config)
 		default:
 			return nil,
 				failure.New("unknown task executor", kv.String("name", tCfg.Executor)) /////////////////////////////////

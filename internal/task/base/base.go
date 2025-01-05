@@ -17,6 +17,15 @@ type (
 	}
 )
 
+func (b *Base) Clone(disabled bool) *Base {
+	return &Base{
+		Executor: b.Executor,
+		Schedule: b.Schedule,
+		Retries:  b.Retries,
+		Disabled: disabled,
+	}
+}
+
 func (b *Base) Enabled() bool {
 	b.mutex.Lock()
 	defer b.mutex.Unlock()

@@ -68,52 +68,67 @@ func (impl *implBackend) LoadTasks() (map[string]*task.Config, error) {
 	return tasks, nil
 }
 
-func (impl *implBackend) disableEnable(name string, disabled bool) (bool, error) {
-	impl.mutex.Lock()
-	defer impl.mutex.Unlock()
-
-	task, ok := impl.tasks[name]
-	if !ok {
-		return false,
-			failure.New("this task doesn't exist", kv.String("name", name)) ////////////////////////////////////////////
-	}
-
-	if task.Enabled() != disabled {
-		return false, nil
-	}
-
-	task.DisableEnable(disabled)
-
+func (impl *implBackend) writeFile() error {
 	bs, err := yaml.Marshal(impl.tasks)
 	if err != nil {
-		return true, err
+		return err
 	}
 
 	id, err := uuid.String()
 	if err != nil {
-		return true, err
+		return err
 	}
 
 	path := filepath.Dir(impl.file)
 	tmpFile := filepath.Join(path, id)
 
 	if err := os.WriteFile(tmpFile, bs, 0644); err != nil {
-		return true, err
+		return err
 	}
 
 	if err := os.Rename(tmpFile, impl.file); err != nil {
 		_ = os.Remove(tmpFile)
-		return true, err
+		return err
 	}
 
-	return true, nil
+	return nil
 }
 
-func (impl *implBackend) DisableTask(name string) (bool, error) {
+func (impl *implBackend) disableEnable(name string, disabled bool) error {
+	impl.mutex.Lock()
+	defer impl.mutex.Unlock()
+
+	task, ok := impl.tasks[name]
+	if !ok {
+		return failure.New("this task doesn't exist", kv.String("name", name)) /////////////////////////////////////////
+	}
+
+	if task.Enabled() != disabled {
+		return nil
+	}
+
+	backup := task.Base
+
+	defer func() {
+		impl.tasks[name].Base = backup
+	}()
+
+	impl.tasks[name].Base = backup.Clone(disabled)
+
+	if err := impl.writeFile(); err != nil {
+		return failure.WithMessage(err, "failed to update file", kv.String("name", impl.file)) /////////////////////////
+	}
+
+	backup.DisableEnable(disabled)
+
+	return nil
+}
+
+func (impl *implBackend) DisableTask(name string) error {
 	return impl.disableEnable(name, true)
 }
 
-func (impl *implBackend) EnableTask(name string) (bool, error) {
+func (impl *implBackend) EnableTask(name string) error {
 	return impl.disableEnable(name, false)
 }
 
