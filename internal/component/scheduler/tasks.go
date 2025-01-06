@@ -12,11 +12,25 @@ import (
 )
 
 func (impl *implComponent) DisableTask(name string) error {
-	return impl.backend.DisableTask(name)
+	job := impl.getJob(name)
+	if job == nil {
+		return apierr.NotFound(
+			failure.New("this task doesn't exist", kv.String("name", name)), ///////////////////////////////////////////
+		)
+	}
+
+	return impl.backend.DisableTask(job.task)
 }
 
 func (impl *implComponent) EnableTask(name string) error {
-	return impl.backend.EnableTask(name)
+	job := impl.getJob(name)
+	if job == nil {
+		return apierr.NotFound(
+			failure.New("this task doesn't exist", kv.String("name", name)), ///////////////////////////////////////////
+		)
+	}
+
+	return impl.backend.EnableTask(job.task)
 }
 
 func (impl *implComponent) FireTask(name string) error {

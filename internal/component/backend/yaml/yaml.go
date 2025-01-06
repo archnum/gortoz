@@ -14,7 +14,6 @@ import (
 	"github.com/archnum/sdk.base/kv"
 	"github.com/archnum/sdk.base/mapstruct"
 	"github.com/archnum/sdk.base/uuid"
-	"github.com/archnum/sdk.http/api/apierr"
 	"gopkg.in/yaml.v3"
 
 	"github.com/archnum/gortoz/internal/task"
@@ -95,22 +94,22 @@ func (impl *implBackend) writeFile() error {
 	return nil
 }
 
-func (impl *implBackend) disableEnable(name string, disabled bool) error {
+func (impl *implBackend) disableEnable(task task.Task, disabled bool) error {
+	name := task.Name()
+
 	impl.mutex.Lock()
 	defer impl.mutex.Unlock()
 
-	task, ok := impl.tasks[name]
+	tCfg, ok := impl.tasks[name]
 	if !ok {
-		return apierr.NotFound(
-			failure.New("this task doesn't exist", kv.String("name", name)), ///////////////////////////////////////////
-		)
+		return failure.New("strangely, this task doesn't exist", kv.String("name", name)) //////////////////////////////
 	}
 
-	if task.Enabled() != disabled {
+	if task.Disabled() == disabled {
 		return nil
 	}
 
-	backup := task.Base
+	backup := tCfg.Base
 
 	defer func() {
 		impl.tasks[name].Base = backup
@@ -122,20 +121,18 @@ func (impl *implBackend) disableEnable(name string, disabled bool) error {
 		return failure.WithMessage(err, "failed to update file", kv.String("name", impl.file)) /////////////////////////
 	}
 
-	backup.DisableEnable(disabled)
+	task.Toggle()
 
 	return nil
 }
 
-func (impl *implBackend) DisableTask(name string) error {
-	return impl.disableEnable(name, true)
+func (impl *implBackend) DisableTask(task task.Task) error {
+	return impl.disableEnable(task, true)
 }
 
-func (impl *implBackend) EnableTask(name string) error {
-	return impl.disableEnable(name, false)
+func (impl *implBackend) EnableTask(task task.Task) error {
+	return impl.disableEnable(task, false)
 }
-
-func (impl *implBackend) CollectResult(result *task.Result) {}
 
 func (impl *implBackend) Close() error {
 	return nil

@@ -5,38 +5,20 @@
 
 package fake
 
-import (
-	"github.com/archnum/gortoz/internal/task/base"
-	"github.com/archnum/sdk.base/tracer"
-)
+import "github.com/archnum/gortoz/internal/task/base"
 
 type (
 	implTask struct {
-		*base.Base
-		name string
+		*base.Wrapper
 	}
 )
 
-func NewTask(name string, base *base.Base, _ map[string]any) (*implTask, error) {
+func NewTask(name string, bb *base.Base, _ map[string]any) (*implTask, error) {
 	impl := &implTask{
-		Base: base,
-		name: name,
+		Wrapper: base.NewWrapper(name, bb),
 	}
 
 	return impl, nil
-}
-
-func (impl *implTask) Name() string {
-	return impl.name
-}
-
-func (impl *implTask) Attr() *base.Base {
-	return impl.Base
-}
-
-func (impl *implTask) Run() error {
-	tracer.Log(impl.name)
-	return nil
 }
 
 /*

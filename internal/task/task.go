@@ -9,7 +9,6 @@ import (
 	"github.com/archnum/sdk.base/failure"
 	"github.com/archnum/sdk.base/kv"
 
-	"github.com/archnum/gortoz/internal/task/base"
 	"github.com/archnum/gortoz/internal/task/fake"
 	"github.com/archnum/gortoz/internal/task/http"
 )
@@ -17,8 +16,9 @@ import (
 type (
 	Task interface {
 		Name() string
-		Attr() *base.Base
-		Enabled() bool
+		Disabled() bool
+		Toggle()
+		Schedule() string
 		Run() error
 	}
 )

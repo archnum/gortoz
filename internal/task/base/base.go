@@ -5,7 +5,12 @@
 
 package base
 
-import "sync"
+import (
+	"sync"
+
+	"github.com/archnum/sdk.base/kv"
+	"github.com/archnum/sdk.base/tracer"
+)
 
 type (
 	Base struct {
@@ -13,7 +18,6 @@ type (
 		Schedule string `yaml:"schedule"`
 		Retries  uint   `yaml:"retries"`
 		Disabled bool   `yaml:"disabled"`
-		mutex    sync.Mutex
 	}
 )
 
@@ -26,18 +30,46 @@ func (b *Base) Clone(disabled bool) *Base {
 	}
 }
 
-func (b *Base) Enabled() bool {
-	b.mutex.Lock()
-	defer b.mutex.Unlock()
+type (
+	Wrapper struct {
+		name  string
+		base  *Base
+		mutex sync.Mutex
+	}
+)
 
-	return !b.Disabled
+func NewWrapper(name string, base *Base) *Wrapper {
+	return &Wrapper{
+		name: name,
+		base: base,
+	}
 }
 
-func (b *Base) DisableEnable(disabled bool) {
-	b.mutex.Lock()
-	defer b.mutex.Unlock()
+func (w *Wrapper) Name() string {
+	return w.name
+}
 
-	b.Disabled = disabled
+func (w *Wrapper) Disabled() bool {
+	w.mutex.Lock()
+	defer w.mutex.Unlock()
+
+	return w.base.Disabled
+}
+
+func (w *Wrapper) Toggle() {
+	w.mutex.Lock()
+	defer w.mutex.Unlock()
+
+	w.base.Disabled = !w.base.Disabled
+}
+
+func (w *Wrapper) Schedule() string {
+	return w.base.Schedule
+}
+
+func (w *Wrapper) Run() error {
+	tracer.Log("Run task", kv.String("name", w.name)) //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	return nil
 }
 
 /*

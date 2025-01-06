@@ -140,8 +140,7 @@ func (impl *implComponent) Build() error {
 	impl.cron = cron
 
 	for name, task := range tasks {
-		attr := task.Attr()
-		schedule, err := parser.Parse(attr.Schedule)
+		schedule, err := parser.Parse(task.Schedule())
 		if err != nil {
 			return failure.WithMessage(err, "task schedule error", kv.String("name", name)) ////////////////////////////
 		}

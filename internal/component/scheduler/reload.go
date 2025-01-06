@@ -37,25 +37,23 @@ func (impl *implComponent) reload() {
 	}
 
 	for name, task := range tasks {
-		attr := task.Attr()
-
 		pJob, ok := impl.jobs[name]
 		if ok {
-			pAttr := pJob.task.Attr()
+			pTask := pJob.task
 
-			if attr.Schedule == pAttr.Schedule && attr.Enabled() == pAttr.Enabled() {
+			if task.Schedule() == pTask.Schedule() && task.Disabled() == pTask.Disabled() {
 				continue
 			}
 
 			impl.deleteJob(pJob)
 		}
 
-		schedule, err := impl.parser.Parse(attr.Schedule)
+		schedule, err := impl.parser.Parse(task.Schedule())
 		if err != nil {
 			impl.logger.Error( //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 				"Task schedule error",
 				kv.String("name", name),
-				kv.String("schedule", attr.Schedule),
+				kv.String("schedule", task.Schedule()),
 			)
 
 			continue
@@ -66,9 +64,8 @@ func (impl *implComponent) reload() {
 		impl.logger.Notice( //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 			util.If(ok, "Modified task", "Added task"),
 			kv.String("name", name),
-			kv.Bool("disabled", !attr.Enabled()),
-			kv.String("schedule", attr.Schedule),
-			kv.String("executor", attr.Executor),
+			kv.Bool("disabled", task.Disabled()),
+			kv.String("schedule", task.Schedule()),
 		)
 	}
 

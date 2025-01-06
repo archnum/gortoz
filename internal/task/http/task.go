@@ -7,20 +7,18 @@ package http
 
 import (
 	"github.com/archnum/sdk.base/mapstruct"
-	"github.com/archnum/sdk.base/tracer"
 
 	"github.com/archnum/gortoz/internal/task/base"
 )
 
 type (
 	implTask struct {
-		*base.Base
+		*base.Wrapper
 		*config
-		name string
 	}
 )
 
-func NewTask(name string, base *base.Base, cfg map[string]any) (*implTask, error) {
+func NewTask(name string, bb *base.Base, cfg map[string]any) (*implTask, error) {
 	config := new(config)
 
 	if err := mapstruct.Decode(&config, cfg); err != nil {
@@ -32,25 +30,11 @@ func NewTask(name string, base *base.Base, cfg map[string]any) (*implTask, error
 	}
 
 	impl := &implTask{
-		Base:   base,
-		config: config,
-		name:   name,
+		Wrapper: base.NewWrapper(name, bb),
+		config:  config,
 	}
 
 	return impl, nil
-}
-
-func (impl *implTask) Name() string {
-	return impl.name
-}
-
-func (impl *implTask) Attr() *base.Base {
-	return impl.Base
-}
-
-func (impl *implTask) Run() error {
-	tracer.Log(impl.name)
-	return nil
 }
 
 /*

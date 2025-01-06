@@ -22,9 +22,8 @@ type (
 	Backend interface {
 		AmITheLeader() bool
 		LoadTasks() (map[string]*task.Config, error)
-		DisableTask(name string) error
-		EnableTask(name string) error
-		CollectResult(result *task.Result)
+		DisableTask(task task.Task) error
+		EnableTask(task task.Task) error
 		Close() error
 	}
 
