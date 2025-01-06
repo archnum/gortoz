@@ -79,6 +79,15 @@ func (impl *implComponent) addJob(task task.Task, schedule cron.Schedule) {
 
 	job.entryID = impl.cron.Schedule(schedule, job)
 
+	var nextRun string
+	disabled := task.Disabled()
+
+	if !disabled {
+		nextRun = schedule.Next(time.Now()).Format(time.DateTime)
+	}
+
+	impl.backend.SetState(task, nextRun) ////////////////////////////////////////////////////////////// SetState ///////
+
 	impl.mutex.Lock()
 	defer impl.mutex.Unlock()
 

@@ -32,8 +32,8 @@ func (b *Base) Clone(disabled bool) *Base {
 
 type (
 	Wrapper struct {
-		name  string
 		base  *Base
+		name  string
 		mutex sync.Mutex
 	}
 )

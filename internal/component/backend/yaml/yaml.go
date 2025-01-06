@@ -25,9 +25,10 @@ type (
 	}
 
 	implBackend struct {
-		tasks map[string]*task.Config
-		file  string
-		mutex sync.Mutex
+		tasks      map[string]*task.Config
+		tasksState map[string]*task.State
+		file       string
+		mutex      sync.Mutex
 	}
 )
 
@@ -38,7 +39,8 @@ func New(data map[string]any) (*implBackend, error) {
 	}
 
 	impl := &implBackend{
-		file: cfg.File,
+		file:       cfg.File,
+		tasksState: make(map[string]*task.State),
 	}
 
 	return impl, nil
@@ -127,10 +129,12 @@ func (impl *implBackend) disableEnable(task task.Task, disabled bool) error {
 }
 
 func (impl *implBackend) DisableTask(task task.Task) error {
+	// TODO: change state
 	return impl.disableEnable(task, true)
 }
 
 func (impl *implBackend) EnableTask(task task.Task) error {
+	// TODO: change state
 	return impl.disableEnable(task, false)
 }
 

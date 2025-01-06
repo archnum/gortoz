@@ -6,6 +6,8 @@
 package scheduler
 
 import (
+	"time"
+
 	"github.com/robfig/cron/v3"
 
 	"github.com/archnum/gortoz/internal/task"
@@ -14,6 +16,7 @@ import (
 type (
 	manager interface {
 		AmITheLeader() bool
+		RunResult(task task.Task, result *task.Result)
 	}
 
 	job struct {
@@ -25,18 +28,31 @@ type (
 )
 
 func (job *job) run() {
-	if err := job.task.Run(); err != nil { /////////////////////////////////////////////// Exécution de la tâche ///////
-		_ = 0
+	now := time.Now()
+
+	var nextRun string
+
+	if !job.task.Disabled() {
+		nextRun = job.schedule.Next(now).Format(time.DateTime)
 	}
+
+	result := &task.Result{
+		DateTime: now.Format(time.DateTime),
+		Success:  true,
+		NextRun:  nextRun,
+	}
+
+	if err := job.task.Run(); err != nil {
+		result.Success = false
+		result.Error = err
+	}
+
+	job.manager.RunResult(job.task, result) ////////////////////////////////////////////////////////// RunResult ///////
 }
 
 func (job *job) Run() {
-	if job.manager.AmITheLeader() {
-		if job.task.Disabled() {
-			_ = 0
-		} else {
-			job.run()
-		}
+	if job.manager.AmITheLeader() && !job.task.Disabled() {
+		job.run()
 	}
 }
 

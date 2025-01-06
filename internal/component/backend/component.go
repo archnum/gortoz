@@ -24,6 +24,8 @@ type (
 		LoadTasks() (map[string]*task.Config, error)
 		DisableTask(task task.Task) error
 		EnableTask(task task.Task) error
+		SetState(task task.Task, nextRun string)
+		RunResult(task task.Task, result *task.Result)
 		Close() error
 	}
 
