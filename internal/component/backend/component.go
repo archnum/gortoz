@@ -26,6 +26,7 @@ type (
 		EnableTask(task task.Task) error
 		SetState(task task.Task, nextRun string)
 		RunResult(task task.Task, result *task.Result)
+		Tasks() []*task.State
 		Close() error
 	}
 
