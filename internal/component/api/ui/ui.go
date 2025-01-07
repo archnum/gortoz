@@ -7,16 +7,18 @@ package ui
 
 import (
 	"github.com/archnum/sdk.application/container"
+	"github.com/archnum/sdk.base/application"
 	"github.com/archnum/sdk.http/api"
 )
 
 type (
 	API struct {
 		api.Manager
+		app *application.Application
 	}
 )
 
-func New(_ container.Container, manager api.Manager) (*API, error) {
+func New(c container.Container, manager api.Manager) (*API, error) {
 	fs, err := staticFS()
 	if err != nil {
 		return nil, err
@@ -24,12 +26,15 @@ func New(_ container.Container, manager api.Manager) (*API, error) {
 
 	api := &API{
 		Manager: manager,
+		app:     c.App(),
 	}
 
 	router := manager.Router()
 
 	router.Static(fs)
 	router.Get("/", api.dashboard)
+	router.Get("/dashboard", api.dashboard)
+	router.Get("/dashboard/data", api.dashboardData)
 
 	return api, nil
 }

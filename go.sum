@@ -1,11 +1,11 @@
-github.com/archnum/sdk.application v0.0.0-20250105134711-0cef1d3f886b h1:nccIg+BeTMcs9JtSIw+qlwitZh7rVRQ6C20lCSD820Q=
-github.com/archnum/sdk.application v0.0.0-20250105134711-0cef1d3f886b/go.mod h1:1xhSRN9LlwjKaI0ktfd+iAVTPg3C03r2g9YNvo308S8=
+github.com/archnum/sdk.application v0.0.0-20250107081126-7d3b0a8ffed1 h1:GMG2YoSQdgTeIgTADqiZUh/DefdN1xycx0LQ6jrbsSE=
+github.com/archnum/sdk.application v0.0.0-20250107081126-7d3b0a8ffed1/go.mod h1:8fi7pnFrS4vBkTMKa7yXZmgQP8Tn4p0lfZWOnRc4XJ0=
 github.com/archnum/sdk.base v0.0.0-20250106224000-6ade399e6852 h1:Ned98Iw7NBuzkCW8qREDJgjEByplA5YROJMNdaBqQXk=
 github.com/archnum/sdk.base v0.0.0-20250106224000-6ade399e6852/go.mod h1:h5+FkrHpSTmuatLr4efkSIUh7hldsT+BNy7OHKo1ZNk=
-github.com/archnum/sdk.http v0.0.0-20250105145202-cd56cb8134b1 h1:b198OPWDNdFwqRXk8H3x/zx1x+LCcdxPW2olJjPK2J4=
-github.com/archnum/sdk.http v0.0.0-20250105145202-cd56cb8134b1/go.mod h1:Y+53f2H3kvDMafhIFxJT7vpEsr/Gd84tbCjVtVBFnxs=
-github.com/archnum/sdk.loggers v0.0.0-20250104145420-539e3fc1f1ec h1:kYEEfG9oYJmrYX+maxmux+J7IOMv9IbCiuuKDeW/ryY=
-github.com/archnum/sdk.loggers v0.0.0-20250104145420-539e3fc1f1ec/go.mod h1:jdN+/3cEoVzqh+KWvPEQ1/p618sjTGa7gB6/9uliqv0=
+github.com/archnum/sdk.http v0.0.0-20250107081132-f5aece37200f h1:pcrcswAPX2I/YyXhVCKNkPSRkzDU6Dzb4vQgq6cclb0=
+github.com/archnum/sdk.http v0.0.0-20250107081132-f5aece37200f/go.mod h1:oeFCDezpg1IhL+AgYDmgOU/KmxnlKaQPlIKDiB5RJQA=
+github.com/archnum/sdk.loggers v0.0.0-20250107081135-351e1b2cddd4 h1:5+AI1qKr7bnjHhQ3wrIwpbVNIdKySH1XyQnB0qUJyPE=
+github.com/archnum/sdk.loggers v0.0.0-20250107081135-351e1b2cddd4/go.mod h1:85QlQQfW6VSKxEIOBPv/KdvUtVa1UoCLSwlYLhcZhaE=
 github.com/coreos/go-systemd/v22 v22.5.0 h1:RrqgGjYQKalulkV8NGVIfkXQf6YYmOyiJKk8iXXhfZs=
 github.com/coreos/go-systemd/v22 v22.5.0/go.mod h1:Y58oyj3AT4RCenI/lSvhwexgC+NSVTIJ3seZv2GcEnc=
 github.com/go-viper/mapstructure/v2 v2.2.1 h1:ZAaOCxANMuZx5RCeg0mBdEZk7DZasvvZIxtHqx8aGss=
