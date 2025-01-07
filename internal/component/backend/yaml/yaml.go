@@ -125,16 +125,18 @@ func (impl *implBackend) disableEnable(task task.Task, disabled bool) error {
 
 	task.Toggle()
 
+	state := impl.tasksState[name]
+	state.Disabled = disabled
+	state.NextRun = ""
+
 	return nil
 }
 
 func (impl *implBackend) DisableTask(task task.Task) error {
-	// TODO: change state
 	return impl.disableEnable(task, true)
 }
 
 func (impl *implBackend) EnableTask(task task.Task) error {
-	// TODO: change state
 	return impl.disableEnable(task, false)
 }
 
