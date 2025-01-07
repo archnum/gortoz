@@ -29,8 +29,10 @@ var (
 func main() {
 	app, err := application.New(
 		"gortoz",
+		application.WithEcosystem("bagad"),
 		application.WithVersion(_version),
 		application.WithBuiltAt(_builtAt),
+		application.WithShortDesc("système de planification de tâches"),
 	)
 	if err == nil {
 		c := container.New(app)

@@ -5,7 +5,7 @@ go 1.23.4
 require (
 	github.com/archnum/sdk.application v0.0.0-20250107081126-7d3b0a8ffed1
 	github.com/archnum/sdk.base v0.0.0-20250106224000-6ade399e6852
-	github.com/archnum/sdk.http v0.0.0-20250107081132-f5aece37200f
+	github.com/archnum/sdk.http v0.0.0-20250107084830-45ef09358cb2
 	github.com/archnum/sdk.loggers v0.0.0-20250107081135-351e1b2cddd4
 	github.com/ltrochet/loggers v0.0.0-20241231182134-97fb6d303182
 	github.com/maragudk/gomponents v0.22.0

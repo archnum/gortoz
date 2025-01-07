@@ -19,11 +19,11 @@ func (api *API) dashboardData(rr render.Renderer) error {
 
 func (api *API) dashboard(rr render.Renderer) error {
 	return api.renderPage(
-		rr.ResponseWriter(),
+		rr,
 		func() g.Node {
 			return templates.MainContent(
 				"Tableau de bord",
-				"État de l'écosystème et de l'infrastructure en général",
+				"Liste des tâches planifiées ou désactivées",
 				"/dashboard/data",
 				"10s",
 			)

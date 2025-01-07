@@ -6,9 +6,10 @@
 package ui
 
 import (
-	"net/http"
+	"fmt"
 	"time"
 
+	"github.com/archnum/sdk.http/api/render"
 	g "github.com/maragudk/gomponents"
 	. "github.com/maragudk/gomponents/html"
 )
@@ -18,7 +19,7 @@ const (
 	_htmx  = "/static/htmx.2.0.4.js"
 )
 
-func (api *API) renderPage(w http.ResponseWriter, content func() g.Node) error {
+func (api *API) renderPage(rr render.Renderer, content func() g.Node) error {
 	app := api.app
 
 	return Doctype(
@@ -28,6 +29,7 @@ func (api *API) renderPage(w http.ResponseWriter, content func() g.Node) error {
 			Head(
 				Meta(Charset("utf-8")),
 				Meta(Name("viewport"), Content("width=device-width, initial-scale=1")),
+				Meta(Name("description"), Content(fmt.Sprintf("écosystème %s", app.Ecosystem()))),
 				TitleEl(g.Text(app.Name())),
 				Link(Rel("stylesheet"), Href(_bulma)),
 				Link(Rel("stylesheet"), Href("/static/app.css")),
@@ -41,7 +43,7 @@ func (api *API) renderPage(w http.ResponseWriter, content func() g.Node) error {
 						Div(
 							Class("navbar-brand"),
 							A(
-								Class("navbar-item"),
+								Class("navbar-item has-text-weight-semibold"),
 								Href("/"),
 								g.Text(app.Name()),
 							),
@@ -61,8 +63,25 @@ func (api *API) renderPage(w http.ResponseWriter, content func() g.Node) error {
 								Class("navbar-start"),
 								A(
 									Class("navbar-item"),
-									Href("/applications"),
-									g.Text("applications"),
+									g.Text("documentation"),
+								),
+							),
+							Div(
+								Class("navbar-end"),
+								Div(
+									Class("navbar-item has-dropdown is-hoverable"),
+									A(
+										Class("navbar-link"),
+										g.Text("admin"),
+									),
+									Div(
+										Class("navbar-dropdown"),
+										A(
+											Class("navbar-item"),
+											Href("/admin/loggers"),
+											g.Text("loggers"),
+										),
+									),
 								),
 							),
 						),
@@ -84,18 +103,30 @@ func (api *API) renderPage(w http.ResponseWriter, content func() g.Node) error {
 					Div(
 						Class("is-size-7 has-text-centered"),
 						P(
-							g.Textf("%s - v%s - %s", app.Name(), app.Version(), app.BuiltAt().Format(time.DateTime)),
+							g.Textf(
+								"%s - %s - v%s - %s",
+								app.Name(),
+								app.ShortDesc(),
+								app.Version(),
+								app.BuiltAt().Format(time.DateTime),
+							),
 						),
 						P(
-							g.Raw("archivage numérique"),
+							g.Text("écosystème"),
+							g.Raw("&nbsp;"),
+							Span(
+								Class("tag is-black"),
+								g.Text(app.Ecosystem()),
+							),
 						),
+						P(g.Text("Copyright (c) 2025 Archivage Numérique")),
 					),
 				),
 				Script(Src(_htmx)),
 				Script(Src("/static/app.js")),
 			),
 		),
-	).Render(w)
+	).Render(rr.ResponseWriter())
 }
 
 /*
