@@ -63,6 +63,10 @@ func (w *Wrapper) Toggle() {
 	w.base.Disabled = !w.base.Disabled
 }
 
+func (w *Wrapper) Executor() string {
+	return w.base.Executor
+}
+
 func (w *Wrapper) Schedule() string {
 	return w.base.Schedule
 }

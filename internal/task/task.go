@@ -18,6 +18,7 @@ type (
 		Name() string
 		Disabled() bool
 		Toggle()
+		Executor() string
 		Schedule() string
 		Run() error
 	}

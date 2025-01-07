@@ -29,6 +29,9 @@ tasks:
             - task: lint
             - task: test
             - task: build
+    air:
+        cmds:
+            - go build -ldflags "{{.LDFLAGS}}" -o ./.air/main ./main/main.go
     commit:
         cmds:
             - git add .

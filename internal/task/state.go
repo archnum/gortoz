@@ -9,6 +9,7 @@ type (
 	// TODO: un pool ?
 	State struct {
 		Name         string
+		Executor     string
 		Schedule     string
 		NextRun      string
 		LastSuccess  string
@@ -23,6 +24,7 @@ type (
 func NewState(task Task, nextRun string) *State {
 	return &State{
 		Name:     task.Name(),
+		Executor: task.Executor(),
 		Disabled: task.Disabled(),
 		Schedule: task.Schedule(),
 		NextRun:  nextRun,

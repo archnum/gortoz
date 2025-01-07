@@ -6,6 +6,7 @@
 package ui
 
 import (
+	"github.com/archnum/gortoz/internal/component/backend"
 	"github.com/archnum/sdk.application/container"
 	"github.com/archnum/sdk.base/application"
 	"github.com/archnum/sdk.http/api"
@@ -14,7 +15,8 @@ import (
 type (
 	API struct {
 		api.Manager
-		app *application.Application
+		app     *application.Application
+		backend backend.Backend
 	}
 )
 
@@ -27,6 +29,7 @@ func New(c container.Container, manager api.Manager) (*API, error) {
 	api := &API{
 		Manager: manager,
 		app:     c.App(),
+		backend: backend.Value(c),
 	}
 
 	router := manager.Router()
